@@ -28,21 +28,6 @@
           </li>
         </ul>
       </div>
-      <div>
-       <!--  <label><small>ratio:</small>
-        </label>
-        <ul class="nav ratioNav" role="tablist">
-          <li role="presentation" *ngFor="let data of productModel?.size">
-            <div class="sizeRatio"><a>{{data.ratio}}</a></div>
-        </ul> -->
-        <label class="mr15"><strong>RATIO:</strong>
-        </label>
-        <ul class="nav sizeNav mt10" role="tablist">
-          <li role="presentation" *ngFor="let data of productModel?.size">
-            <div class="sizeText"><a>{{data.ratio}}</a></div>
-          </li>
-        </ul>
-      </div>
     </div>
     <div class="form-group">
       <div class="alert alert-danger" role="alert" *ngIf="noPrductAdd">
@@ -50,7 +35,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <div class="inputCartButton">
         <span class="input-group-btn">
           <button type="button" class="quantity-left-minus btn btn-primary btn-number" [disabled]="packCount === 1"
@@ -67,15 +52,11 @@
           </button>
         </span>
       </div>
-    </div>
-    <div class="form-group" *ngIf="!updateQtyTrue">
-      <button (click)="skuProduct(productModel._id, packCount, productModel?.moq, packSum, productModel.size)"
+    </div> -->
+    <div class="form-group">
+      <button (click)="skuProduct(productModel._id)"
         class="addToCartButton">ADD TO
         CART</button>
-    </div>
-    <div class="form-group" *ngIf="updateQtyTrue">
-      <button (click)="skuProduct(productModel._id, packCount, productModel?.moq, packSum, productModel.size)"
-        class="addToCartButton">COMING SOON</button>
     </div>
     <div class="form-group">
     </div>

@@ -99,9 +99,10 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
-  skuProduct(productId, count, moq, packSumTotal, sizeData) {
-    this.noPrductAdd = false;
+  skuProduct(productId) {
     const userId = sessionStorage.getItem('userId');
+    this.addToCartServer(userId, productId);
+    /* const userId = sessionStorage.getItem('userId');
     if (JSON.parse(sessionStorage.getItem('login'))) {
       if ( moq <= count ) {
         this.addToCartServer(userId, productId, count, moq,  packSumTotal, sizeData);
@@ -118,7 +119,7 @@ export class ProductDetailComponent implements OnInit {
           this.noPrductAdd = true;
         }, 100);
       }
-    }
+    } */
   }
   addToCartLocal(product, count, productMoq, packSumTotal, sizeData) {
     const cartLocal = JSON.parse(sessionStorage.getItem('cart')) || [];
@@ -168,14 +169,10 @@ export class ProductDetailComponent implements OnInit {
       });
     }
   }
-  addToCartServer(userId, product, count, productMoq, packSumTotal, sizeData) {
+  addToCartServer(userId, product) {
     const totalItem: any = [];
     const cart = {
       productId: product,
-      pack: count,
-      moq: productMoq,
-      ratioQty: packSumTotal,
-      size: sizeData
     };
     totalItem.push(cart);
     this.cartModel = new Cart();
