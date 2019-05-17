@@ -1,0 +1,30 @@
+<div class="row" *ngIf="addressSelected">
+  <div class="col-md-6 col-offset-6  mt-5 mb-3 gridPrice">
+    <div class="line mb-1">
+      <p><strong>Delivery Address</strong></p>
+      <div><b>{{addressSelected.name}}</b></div>
+      <div>{{addressSelected.building }}</div>
+      <div>{{addressSelected.streetAddress }}</div>
+      <div>{{addressSelected.landmark }}</div>
+      <div>{{addressSelected.city }}</div>
+      <div>{{addressSelected.state }}</div>
+      <div><span>Mobile: </span>{{addressSelected.mobileNumber }}</div>
+      <div class="float-right">
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-offset-6 mt-5 mb-3 gridPrice">
+    <div class="line mb-1">
+      <p><strong>PRICE DETAILS</strong></p>
+      <span class="text-dark">Price: ({{totalItems}} pack)</span>
+      <span class="text-muted float-right"> <span>&#x20B9;</span>{{subTotal}}</span>
+    </div>
+    <div class="dropdown-divider"></div>
+    <div class="line mb-1">
+      <span class="fw-500">Total:</span>
+      <span class="text-muted float-right"><span>&#x20B9;</span>{{subTotal}}</span>
+    </div>
+        <button class="addButton float-right" 
+         (click)="orderConfirmDetails(addressSelected)">CONFIRM</button>
+  </div>
+</div>

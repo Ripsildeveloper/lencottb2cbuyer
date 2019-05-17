@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-4" *ngFor="let address of addressModel; let i = index">
+    <div class="gridAddress" [class.selected]="selected === i">
+      <div class="text-secondary">
+        <strong>
+          <label>
+            <input type="radio" name="address.name" [value]="address.name"
+              (change)="selectedAddress($event, address, i)" [checked]="selected === i">
+            {{address.name}}
+          </label>
+        </strong>
+      </div>
+
+      <div>{{address.building }}</div>
+      <div>{{address.streetAddress }}</div>
+      <div>{{address.landmark }}</div>
+      <div>{{address.city }}</div>
+      <div>{{address.state }}</div>
+      <div><span>Mobile: </span>{{address.mobileNumber }}</div>
+      <div class="row">
+        <div class="col-md-6 actionClass" (click)="openEditAddress(address)">
+          Edit
+        </div>
+        <div class="col-md-6 actionClass" (click)="deleteAddressData(address._id)">
+          Delete
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mb-1">
+    <div class="gridAddress" style="height: 250px">
+      <div class="addButton" (click)="openAddAddress()">
+        ADD ADDRESS
+      </div>
+    </div>
+  </div>
+</div>

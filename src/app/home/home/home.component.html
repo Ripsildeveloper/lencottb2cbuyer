@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xl-12"
+     *ngFor="let bannerImg of banner; let i = index" style="padding: 0px">
+        <div *ngIf="slideIndex === i">
+            <img  [src]="bannerImg.bannerImage" class="imgResponsive">
+        </div>
+    </div>
+</div>
+<a class="prev" (click)="minusSlides(slideIndex)">&#10094;</a>
+<a class="next" (click)="plusSlides(slideIndex)">&#10095;</a>
+<app-promotion
+[promotionsModel]="promotionTable" [slideMultiStart]="slideMultiStart"
+[sliderLength]= "sliderLength"
+[slideMultiLength] = "slideMultiLength"
+ [slideMultiEnd]="slideMultiEnd" (changeMultiPlusSlider)="plusMultiCarousel($event)" 
+ (changeMultiMinusSlider)="minusMultiCarousel($event)"
+ ></app-promotion>
+<div class="p-2 subHeader"><span></span></div>
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-xl-12 col-md-12 col-12" >
+      <img  src="./../../../assets//img/Poster.jpg" class="imgResponsive">
+  </div>
+</div>
+<!-- <app-hot-product></app-hot-product> -->
+
