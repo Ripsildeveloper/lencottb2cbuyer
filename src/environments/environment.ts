@@ -4,11 +4,7 @@
 
 export const environment = {
   production: false,
-<<<<<<< HEAD
   serviceUrl: 'http://localhost:3102/'
-=======
-  serviceUrl: 'http://localhost:3002/'
->>>>>>> 5a23a454c013cdbd8c3e8c229fe96f6cffed1e38
 };
 
 /*
