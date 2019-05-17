@@ -1,0 +1,37 @@
+<mat-horizontal-stepper #stepper>
+  <mat-step>
+    <ng-template matStepLabel>Delivery Address</ng-template>
+    <app-all-address [addressModel]="addressModel" (addAddress)="addAddressEvent()" 
+    (editAddress)="editAddress($event)"
+    (deleteAddress)="deleteData($event)" 
+    (selectAddress)="selectedAddress($event)"></app-all-address>
+    <button [disabled]="addressModel?.length === 0" class="addButton float-right" matStepperNext>CONTINUE</button>
+
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Order Summary</ng-template>
+    <div [hidden]="!checkOutofStack?.length">
+        Out of stock is present
+    </div>
+    <app-checkout-cart [shopModel]="shopModel" (addPlus)="actionPlus($event)"
+     (minusPlus)="actionMinus($event)"
+      (deleteCart)="removeCart($event)"></app-checkout-cart>
+    <button class="backButton float-left" matStepperPrevious>Back</button>
+    <button [disabled]="addressModel?.length === 0"
+     class="addButton float-right" (click)="orderCheck(stepper)" >CONTINUE</button>
+
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Confirm</ng-template>
+    <div *ngIf="shopModel.length !== 0">
+      <app-confirm [totalItems]="totalItems" [addressSelected]="addressSelected" 
+      [subTotal]="subTotal"
+        (confirmDetails)="confirmOrderData($event)"></app-confirm>
+    </div>
+    <div>
+      <button class="backButton float-left" matStepperPrevious>Back</button>
+
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

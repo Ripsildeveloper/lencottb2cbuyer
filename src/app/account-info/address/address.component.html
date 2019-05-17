@@ -1,0 +1,199 @@
+<div class="row" *ngIf="!data">
+  <div class="col-md-12 py-5 border">
+    <h4 class="p-3">Address New Address</h4>
+    <form [formGroup]="addressForm" novalidate (ngSubmit)="!addressForm.invalid && onSubmit()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Name" formControlName="name" required>
+            <button mat-button matSuffix aria-label="Super Category Name">
+            </button>
+            <mat-error *ngIf="addressForm.controls['name'].errors?.required">
+              Name
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-6">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Mobile Number" formControlName="mobileNumber" type="number" required>
+            <button mat-button matSuffix aria-label="Super Category Name">
+            </button>
+            <mat-error *ngIf="addressForm.controls['mobileNumber'].errors?.required">
+              Mobile Number
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Street Address" formControlName="streetAddress" required>
+            <button mat-button matSuffix aria-label="Super Category Name">
+            </button>
+            <mat-error *ngIf="addressForm.controls['streetAddress'].errors?.required">
+              Street Address
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-6">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Building No" formControlName="building" required>
+            <button mat-button matSuffix aria-label="building">
+            </button>
+            <mat-error *ngIf="addressForm.controls['building'].errors?.required">
+              Building No
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="LandMark" formControlName="landmark" required>
+            <button mat-button matSuffix aria-label="landmark">
+            </button>
+            <mat-error *ngIf="addressForm.controls['landmark'].errors?.required">
+              Land Mark
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-6">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="State" formControlName="state" required>
+            <button mat-button matSuffix aria-label="state">
+            </button>
+            <mat-error *ngIf="addressForm.controls['state'].errors?.required">
+              State is
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="PinCode" formControlName="pincode" required #name>
+            <button mat-button matSuffix aria-label="pincode">
+            </button>
+            <mat-error *ngIf="addressForm.controls['pincode'].errors?.required">
+              PinCode is
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-6">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="City" formControlName="city" required #name>
+            <button mat-button matSuffix aria-label="city">
+            </button>
+            <mat-error *ngIf="addressForm.controls['city'].errors?.required">
+              City is
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-row">
+
+        <div class="col-md-6">
+
+          <button mat-raised-button type="button" (click)="dialogRef.close(false)" color="accent">cancel</button>
+
+        </div>
+        <div class="col-md-6">
+          <p class="float-right">
+            <button mat-raised-button color="primary" type="submit">Save</button>
+          </p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div  class="row" *ngIf="data">
+    <div class="col-md-12 py-5 border">
+        <h4 class="pb-4">Edit Address</h4>
+    
+  <form [formGroup]="addressForm" novalidate (ngSubmit)="!addressForm.invalid && onSubmit()">
+    <div class="row">
+        
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Name" [value]="data.name || null" formControlName="name" required #name>
+          <button mat-button matSuffix aria-label="name">
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="mobile number" [value]="data.mobileNumber || null" formControlName="mobileNumber"
+            #mobileNumber required>
+          <button mat-button matSuffix aria-label="mobileNumber">
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="building" [value]="data.building" formControlName="building" #building required>
+          <button mat-button matSuffix aria-label="building">
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="streetAddress" [value]="data.streetAddress" #streetAddress
+            formControlName="streetAddress" required>
+          <button mat-button matSuffix aria-label="streetAddress">
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="landmark" [value]="data.landmark" formControlName="landmark" #landmark required>
+          <button mat-button matSuffix aria-label="landmark">
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="City" [value]="data.city" formControlName="city" #city required>
+          <button mat-button matSuffix aria-label="city">
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="State" [value]="data.state" formControlName="state" #state required>
+          <button mat-button matSuffix aria-label="state">
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Pincode" [value]="data.pincode" formControlName="pincode" #pincode required>
+          <button mat-button matSuffix aria-label="pincode">
+          </button>
+        </mat-form-field>
+      </div>
+
+    <!--   <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6 "
+            (click)="updateAddress(data, name, mobileNumber, building, streetAddress, landmark, city, state, pincode )">
+            Update
+          </div>
+          <div class="col-md-6 actionClass" (click)="dialogRef.close(false)">
+            Cancel
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </form>
+</div>
+</div>

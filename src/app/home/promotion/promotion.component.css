@@ -1,0 +1,19 @@
+.imageDiv
+{
+height: 0;
+padding-top: 75%;
+overflow: hidden;
+position: relative;
+background-color: #EAEAEC;
+border-bottom: 1px solid #e9e9eb;
+}
+.imageSize
+{
+    max-width: 100%;
+    height: auto;
+    background-color: #F5F5F6;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
