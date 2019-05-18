@@ -19,13 +19,14 @@
       (deleteCart)="removeCart($event)"></app-checkout-cart>
     <button class="backButton float-left" matStepperPrevious>Back</button>
     <button [disabled]="addressModel?.length === 0"
-     class="addButton float-right" (click)="orderCheck(stepper)" >CONTINUE</button>
+     class="addButton float-right" matStepperNext>CONTINUE</button>
 
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Confirm</ng-template>
     <div *ngIf="shopModel.length !== 0">
-      <app-confirm [totalItems]="totalItems" [addressSelected]="addressSelected" 
+      <app-confirm [totalItems]="totalItems"
+       [addressSelected]="addressSelected" 
       [subTotal]="subTotal"
         (confirmDetails)="confirmOrderData($event)"></app-confirm>
     </div>

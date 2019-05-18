@@ -132,13 +132,6 @@ export class PlaceOrderComponent implements OnInit {
       }
     );
   }
-  orderCheck(stepper) {
-    const totalSet = this.shopModel.map(item => item.items);
-    this.checkOutofStack = totalSet.filter(element => element.sizeQtyCheck === true);
-    if (this.checkOutofStack.length === 0) {
-    stepper.next();
-  }
-  }
 
   confirmOrderData(address) {
     const totalItem = this.shopModel.map(element => element.items);
@@ -150,7 +143,7 @@ export class PlaceOrderComponent implements OnInit {
     this.accountService.confirmOrder(this.orderModel).subscribe(data => {
     this.orderModel = data;
     this.qtyUpdate(this.orderModel);
-      /* this.deleteCart(this.userId); */
+    this.deleteCart(this.userId);
     }, err => {
       console.log(err);
     });
@@ -176,7 +169,7 @@ export class PlaceOrderComponent implements OnInit {
     this.accountService.deleteAllCart(userId).subscribe(data => {
       this.shopModel = data;
       this.router.navigate(['/account/order']);
-      sessionStorage.setItem('pack', JSON.stringify(this.shopModel.length));
+      sessionStorage.setItem('cartqty', JSON.stringify(this.shopModel.length));
     }, error => {
       console.log(error);
     });
@@ -189,44 +182,16 @@ export class PlaceOrderComponent implements OnInit {
     });
   }
   total() {
-    /* let sum = 0; */
-
-    if (JSON.parse(sessionStorage.getItem('login'))) {
-      this.totalQty();
-    } else {
-      /* const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
-      cart.map(item => {
-        sum += item.set * item.moq * item.price;
-      });
-      return sum; */
-    }
-  }
-  totalQty() {
-    let pack = 0;
     this.subTotal = 0;
     this.totalItems = 0;
     const totalProduct: any = this.shopModel.map(item => item.cart_product[0]);
     const totalSet = this.shopModel.map(item => item.items);
+    this.totalItems += totalSet.length;
     totalSet.map(item => {
-      pack += item.pack;
-      this.totalItems += item.pack;
       const priceSingle = totalProduct.find(test => test._id === item.productId);
-      const totalRatio = priceSingle.size;
-      priceSingle.totalRatio = 0;
-      totalRatio.forEach( elem => {
-        priceSingle.totalRatio += elem.ratio * priceSingle.moq;
-        if (elem.sizeQty < 0) {
-          item.sizeQtyCheck = true;
-        } else {
-          elem.sizeQty -= elem.ratio * priceSingle.moq * item.pack;
-          if (elem.sizeQty < 0) {
-            item.sizeQtyCheck = true;
-          }
-        }
-      });
-      this.subTotal += item.pack * priceSingle.totalRatio * priceSingle.price;
+      this.subTotal += item.qty * priceSingle.price;
     });
-    sessionStorage.setItem('pack', JSON.stringify(this.shopModel.length));
+    sessionStorage.setItem('cartqty', JSON.stringify(this.shopModel.length));
   }
 
 }

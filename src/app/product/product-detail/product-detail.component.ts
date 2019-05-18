@@ -4,8 +4,10 @@ import { MatPaginatorIntl } from '@angular/material';
 import { ParamMap, ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ProductService } from './../product.service';
 import { Product } from '../../shared/model/product.model';
+import { Size } from '../../shared/model/size.model';
 import { Cart } from '../../shared/model/cart.model';
 import { MatSnackBar } from '@angular/material';
+import { single } from 'rxjs/operators';
 
 
 @Component({
@@ -28,7 +30,7 @@ export class ProductDetailComponent implements OnInit {
   shopModel: any = [];
   message;
   noPrductAdd = false;
-  selectedItem: any;
+  selectedItem: Size;
   selectedSize: boolean;
   /* updateQtyTrue = false;
   labelSuccess = 'labelSuccess';
@@ -45,8 +47,9 @@ export class ProductDetailComponent implements OnInit {
     this.viewSingleProduct();
   }
 
-  sizeSelect(itemselect: any) {
+  sizeSelect(itemselect: Size) {
     this.selectedItem = itemselect;
+    this.selectedItem.selectSize = itemselect.sizeName;
   }
 
   viewSingleProduct() {
@@ -101,48 +104,35 @@ export class ProductDetailComponent implements OnInit {
       this.relatedProducts.splice(index, 1);
     }
   }
-  selectedItems(productId, sku) {
+  selectedItems(productId, skuItem) {
     if (!this.selectedItem) {
       this.selectedSize =  true;
     } else {
       this.selectedSize =  false;
-      this.skuProductAddToCart(productId, sku);
+      this.skuProductAddToCart(productId, skuItem);
     }
   }
-  skuProductAddToCart(productId, sku) {
+  skuProductAddToCart(productId, skuItem) {
     const userId = sessionStorage.getItem('userId');
-    this.addToCartServer(userId, productId, sku);
-    /* const userId = sessionStorage.getItem('userId');
     if (JSON.parse(sessionStorage.getItem('login'))) {
-      if ( moq <= count ) {
-        this.addToCartServer(userId, productId, count, moq,  packSumTotal, sizeData);
-      } else {
-        setTimeout(() => {
-          this.noPrductAdd = true;
-        }, 100);
-      }
+      this.addToCartServer(userId, productId, skuItem);
     } else {
-      if (moq <= count) {
-        this.addToCartLocal(productId, count, moq, packSumTotal, sizeData);
-      } else {
-        setTimeout(() => {
-          this.noPrductAdd = true;
-        }, 100);
-      }
-    } */
+      this.addToCartLocal(productId, skuItem);
+    }
   }
-  addToCartLocal(product, count, productMoq, packSumTotal, sizeData) {
+  addToCartLocal(product, skuItem) {
     const cartLocal = JSON.parse(sessionStorage.getItem('cart')) || [];
     if (cartLocal.length === 0) {
       const totalItem: any = [];
       const currentProduct: any = [];
       currentProduct.push(this.productModel);
-      const cart = {
+      const item = {
         productId: product,
-        pack: count,
-        moq: productMoq,
-        ratioQty: packSumTotal,
-        size: sizeData,
+        skuCode: skuItem.skuCode,
+        qty: 1
+      };
+      const cart = {
+        items: item,
         cart_product: currentProduct
       };
       totalItem.push(cart);
@@ -155,19 +145,20 @@ export class ProductDetailComponent implements OnInit {
       const totalItem: any = [];
       const currentProduct: any = [];
       currentProduct.push(this.productModel);
-      const cart = {
+      const item = {
         productId: product,
-        pack: count,
-        moq: productMoq,
-        ratioQty: packSumTotal,
-        size: sizeData,
+        skuCode: skuItem.skuCode,
+        qty: 1
+      };
+      const cart = {
+        items: item,
         cart_product: currentProduct
       };
       totalItem.push(cart);
       totalItem.map(element => {
-        if (cartLocal.find(s => s.productId === element.productId)) {
-          const dbSame = cartLocal.find(s => s.productId === element.productId);
-          dbSame.pack += element.pack;
+        if (cartLocal.find(s => s.items.skuCode === element.items.skuCode)) {
+          const localSame = cartLocal.find(s => s.items.skuCode === element.items.skuCode);
+          localSame.items.qty += element.items.qty;
         } else {
           cartLocal.push(element);
         }
@@ -179,11 +170,11 @@ export class ProductDetailComponent implements OnInit {
       });
     }
   }
-  addToCartServer(userId, product, sku) {
+  addToCartServer(userId, product, skuItem) {
     const totalItem: any = [];
     const cart = {
       productId: product,
-      skuCode: sku,
+      skuCode: skuItem.skuCode,
       qty: 1
     };
     totalItem.push(cart);

@@ -1,23 +1,21 @@
-<div class="row galleryRow">
-  <div class="col-sm-6 card">
-    <!-- <img [src]="productModel?.productImageName[0]" class="responsive"> -->
-
+<div class="row galleryRow mt-2">
+  <div class="col-md-6 cardImage">
     <img [src]="productModel?.productImageName[0]" class="responsive">
   </div>
-  <div class="col-sm-6  productDiscription">
+  <div class="col-md-6  productDiscription">
     <h3>{{productModel?.productName}}</h3>
     <span>{{productModel?.productDescription}}</span>
-    <div class="productPrice">
+    <div class="productPrice mt-3">
       <h4><span>&#x20B9;</span> {{productModel?.price}}</h4>
     </div>
-    <div class="form-group">
+    <div class="form-group mt-3">
         <label [hidden]="!selectedSize" class="text-danger">
             Please Select Size
         </label>
       <div>
-        <label class="mr15"><strong>SIZE:</strong>
+        <label class="mt-3"><strong>SIZE: {{selectedItem?.selectSize}}</strong>
         </label>
-        <ul class="nav sizeNav mt10">
+        <ul class="nav sizeNav">
           <li role="presentation" *ngFor="let data of productModel?.size" 
          
           (click)="sizeSelect(data)">
@@ -49,7 +47,5 @@
       <button (click)="selectedItems(productModel._id, selectedItem)"
         class="addToCartButton">ADD TO
         CART</button>
-    </div>
-    <div class="form-group">
     </div>
   </div>

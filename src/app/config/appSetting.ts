@@ -5,6 +5,6 @@ export const AppSetting: AppSettingType = {
     serviceUrl: environment.serviceUrl,
     /* serviceUrl: 'http://lencott.com/service/', */
     /* serviceUrl: 'https://rinteger.com/adminservice/' */
-    productImageUrl: 'http://localhost/Lencott/products/',
-    /* productImageUrl: 'http://lencott.com/admin/images/product/' */
+    /* productImageUrl: 'http://localhost/Lencott/products/', */
+    productImageUrl: 'http://lencott.com/admin/images/product/'
 };

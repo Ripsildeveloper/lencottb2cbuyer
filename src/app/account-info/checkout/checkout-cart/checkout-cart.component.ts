@@ -29,60 +29,28 @@ export class CheckoutCartComponent implements OnInit {
 
   ngOnInit() {
   }
-  actionPlusData(product, pack, moq)   {
+  actionPlusData(product, sku)   {
     const totalItem: any = [];
     const cart: any = {
       productId: product,
-      pack: 1
-    };
+      skuCode: sku,
+      qty: 1
+      };
     totalItem.push(cart);
     this.addPlus.emit(totalItem);
   }
 
-  actionMinusData(shopModel, product, pack, moq) {
+  actionMinusData(product, sku) {
+    const totalItem: any = [];
     const cart: any = {
       productId: product,
-      pack: 1
-    };
-    if ( moq < pack ) {
-      this.cartModel = new Cart();
-      this.cartModel.userId = this.userId;
-      this.cartModel.items = cart;
-      this.minusPlus.emit(cart);
-    } else {
-        shopModel.forEach((val) => {
-        if (val.items.productId === product) {
-          val.items.showCondtion = true;
-        } else {
-          val.items.showCondtion = false;
-        }
-      });
-    }
-  }
-  total() {
-    if (JSON.parse(sessionStorage.getItem('login'))) {
-      this.totalQty();
-    } else {
-    }
-  }
-  totalQty() {
-    let pack = 0;
-    this.subTotal = 0;
-    this.totalItems = 0;
-    const totalProduct: any = this.shopModel.map(item => item.cart_product[0]);
-    const totalSet = this.shopModel.map(item => item.items);
-    totalSet.map(item => {
-      pack += item.pack;
-      this.totalItems += item.pack;
-      const priceSingle = totalProduct.find(test => test._id === item.productId);
-      const totalRatio = priceSingle.size;
-      priceSingle.totalRatio = 0;
-      totalRatio.forEach( elem => {
-        priceSingle.totalRatio += elem.ratio;
-      });
-      this.subTotal += item.pack * priceSingle.totalRatio * priceSingle.price;
-    });
-    sessionStorage.setItem('pack', JSON.stringify(this.shopModel.length));
+      skuCode: sku,
+      qty: 1
+      };
+    this.cartModel = new Cart();
+    this.cartModel.userId = this.userId;
+    this.cartModel.items = cart;
+    this.minusPlus.emit(cart);
   }
   removeCartData(item) {
     this.deleteCart.emit(item);

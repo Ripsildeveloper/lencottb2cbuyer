@@ -60,7 +60,8 @@ logInUserData()   {
   if (!this.cartLocal)     {
     this.router.navigate(['product/shopping']);
   } else {
-      this.addToCartServer(this.userId, this.cartLocal);
+    const localItem = this.cartLocal.map(item => item.items);
+    this.addToCartServer(this.userId, localItem);
   }
 }
 addToCartServer(userId, items) {

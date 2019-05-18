@@ -8,16 +8,24 @@
   <div class="row">
     <div class="col-md-9 mt-2">
       <div class="gridRow" *ngFor="let shop of shopModel">
-        <div *ngIf="localImageUrlView">
+        
           <div class="row" *ngFor="let cart of shop?.cart_product; let i = index">
-            <div class="col-md-2"><img class="img-fluid" style="height: 100px; width: 100px"
+            
+            <div class="col-md-2" 
+            [hidden]="!localImageUrlView"
+            ><img class="img-fluid" style="height: 100px; width: 100px"
                 [src]="productImageUrl +  cart.styleCode +'/'+  cart.productImageName[0]">
             </div>
+                
+                    <div class="col-md-2" [hidden]="localImageUrlView"><img class="img-fluid" style="height: 100px; width: 100px"
+                      [src]="cart.productImageName[0]">
+                  </div>
             <div class="col-md-3">
               <h6 class="product-name"><strong>{{cart.productName}}</strong></h6>
               <!-- <h6><small>{{cart.productDescription}}</small></h6> -->
               <h6> Size:<span *ngFor="let name of cart?.size">
-                  {{ name.sizeName }}
+                
+                  <b [hidden]="shop.items.skuCode !== name.skuCode"> {{ name.sizeName }}</b>
                 </span></h6>
             </div>
             <div class="col-md-2">
@@ -27,14 +35,15 @@
                   <strong>{{cart.moq}}</strong></small></h6> -->
               <span class="input-group-btn">
                 <button type="button" class="btn btn-primary btn-sm  btn-number"
-                  (click)="actionMinus(cart._id, shop.items.pack, cart.moq, shop)" [disabled]="shop.items.pack === 1">
+                  (click)="actionMinus(cart._id, shop.items.skuCode)" [disabled]="shop.items.qty === 1">
                   <span>-</span>
                 </button>
               </span>
-              <input type="text" [disabled]="true" min="1" [value]="shop.items.pack"
+              <input type="text" [disabled]="true" min="1" [value]="shop.items.qty"
                 class="mb-2 text-center input-number" size="1">
               <span class="input-group-btn">
-                <button type="button" class="btn btn-primary btn-sm  btn-number" (click)="actionPlus(cart._id)">
+                <button type="button" class="btn btn-primary btn-sm  btn-number"
+                 (click)="actionPlus(cart._id, shop.items.skuCode)">
                   <span>+</span>
                 </button>
               </span>
@@ -46,61 +55,14 @@
             <div class="col-md-1">
               <h6 class="text-center"><small>Total</small></h6>
               <span
-                class="text-center"><span>&#x20B9;</span>{{cart.totalRatio * shop.items.pack * cart.price }}</span>
+                class="text-center"><span>&#x20B9;</span>{{cart.price * shop.items.qty}}</span>
             </div>
 
             <div class="col-md-2">
-              <small class="classAction" (click)="removeCart(shop.items._id)"
+              <small class="classAction" (click)="removeCart(shop.items._id, shop.items.skuCode)"
                 style="cursor: pointer; color: red">Remove</small>
             </div>
           </div>
-        </div>
-        <div *ngIf="!localImageUrlView">
-          <div class="row" *ngFor="let cart of shop?.cart_product; let i = index">
-            <div class="col-md-2"><img class="img-fluid" style="height: 100px; width: 100px"
-                [src]="cart.productImageName[0]">
-            </div>
-            <div class="col-md-3">
-              <h6 class="product-name"><strong>{{cart.productName}}</strong></h6>
-              <!-- <h6><small>{{cart.productDescription}}</small></h6> -->
-              <h6> Size:<span *ngFor="let name of cart?.size">
-                  {{ name.sizeName }}
-                </span></h6>
-            </div>
-            <div class="col-md-2">
-              <h6 class="text-center"><small>Pack</small></h6>
-              <h6 class="text-danger" *ngIf="shop.showDiv"><small>Minimum Order is
-                  <strong>{{cart.moq}}</strong></small></h6>
-              <span class="input-group-btn">
-
-                <button type="button" class="btn btn-primary btn-sm  btn-number"
-                  (click)="actionLocalMinus(shop, cart.moq, shop.pack)" [disabled]="shop.pack === 1">
-                  <span>-</span>
-                </button>
-              </span>
-              <input type="text" [disabled]="true" min="1" [value]="shop.pack" class="mb-2 text-center input-number"
-                size="1">
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-primary btn-sm  btn-number" (click)="actionLocalPlus(shop, cart)">
-                  <span>+</span>
-                </button>
-              </span>
-            </div>
-            <div class="col-md-2">
-              <h6 class="text-center"><small>Price</small></h6>
-              <span class="text-center"><span>&#x20B9;</span>{{cart.price}} / piece</span>
-            </div>
-            <div class="col-md-1">
-              <h6 class="text-center"><small>Total</small></h6>
-              <span class="text-center"><span>&#x20B9;</span>{{cart.totalRatio * shop.pack * cart.price }}</span>
-            </div>
-
-            <div class="col-md-2">
-              <small class="classAction" (click)="removeLocalCart(shop)"
-                style="cursor: pointer; color: red">Remove</small>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     <div class="col-md-3 mt-2">

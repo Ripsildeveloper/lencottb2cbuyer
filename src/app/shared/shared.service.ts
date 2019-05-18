@@ -34,7 +34,7 @@ export class SharedService {
   addToQty() {
     let sum = 0;
     if (JSON.parse(sessionStorage.getItem('login'))) {
-        sum = +sessionStorage.getItem('pack');
+        sum = +sessionStorage.getItem('cartqty');
         return sum;
     } else {
       const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
@@ -51,7 +51,7 @@ export class SharedService {
     sessionStorage.removeItem('userId');
     sessionStorage.removeItem('userEmailId');
     sessionStorage.setItem('login', 'false');
-    sessionStorage.removeItem('pack');
+    sessionStorage.removeItem('cartqty');
   }
   findName() {
     return sessionStorage.getItem('userEmailId');

@@ -99,6 +99,10 @@
   height: 100%;
   padding: 10px;
 }
+.responsive {
+  width: 100%;
+  height: auto;
+}
 
 .addToCartButton
 {
@@ -115,6 +119,7 @@
     border: none;
     padding: 8px 10px;
     min-height: 45px;
+    display: block
 }
 .addButton {
   margin: 20px auto;

@@ -16,19 +16,22 @@
   </div>
   
   <div class=" col-md-4">
-
-    <div class="row" *ngFor="let cart of data.cart_product">
-      <div class="col-md-6 col-6"><img class="img-fluid" style="height: 100px; width: 100px"
+    <div class="row" *ngFor="let cartitem of data.items; let i = index">
+      <div class="col-md-12" *ngFor="let cart of data.cart_product">
+        <div class="row" *ngIf="cart._id === cartitem.productId">
+          <div class="col-md-6 col-6"><img class="img-fluid" style="height: 100px; width: 100px"
           [src]="productImageUrl +  cart.styleCode +'/'+  cart.productImageName[0]">
       </div>
       <div class="col-md-6 col-6">
         <h6 class="product-name"><strong>{{cart.productName}}</strong></h6>
         <h6><small>{{cart.productDescription}}</small></h6>
         <h6> Size:<span *ngFor="let name of cart?.size">
-            {{ name.sizeName }}
+            <b [hidden]="cartitem.skuCode!== name.skuCode"> {{ name.sizeName }}</b>
           </span></h6>
       </div>
+      </div>
     </div>
+  </div>
   </div>
   <div class="col-md-2">
     <div class="row" *ngFor="let detail of data.addressDetails; let i = index">
