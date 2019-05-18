@@ -44,10 +44,10 @@ export class ProductDetailComponent implements OnInit {
     this.viewSingleProduct();
   }
 
-  sizeSelect(data) {
-    this.selectedItem = data;
-
+  sizeSelect(itemselect: any) {
+    this.selectedItem = itemselect;
   }
+
   viewSingleProduct() {
     this.productService.getSingleProducts(this.id).subscribe(data => {
       this.productModel = data;
@@ -100,7 +100,13 @@ export class ProductDetailComponent implements OnInit {
       this.relatedProducts.splice(index, 1);
     }
   }
+  selectedItems() {
+    if (!this.selectedItem) {
 
+    } else {
+
+    }
+  }
   skuProductAddToCart(productId, sku) {
     const userId = sessionStorage.getItem('userId');
     this.addToCartServer(userId, productId, sku);
