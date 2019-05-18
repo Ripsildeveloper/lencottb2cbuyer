@@ -78,6 +78,14 @@ actionLocalPlus(item, skuCode) {
   sessionStorage.setItem('cart', JSON.stringify(this.shopModel));
   this.total();
 }
+
+actionMinus(product, sku) {
+  if (JSON.parse(sessionStorage.getItem('login'))) {
+    this.actionServerMinus(product, sku);
+  } else {
+    this.actionLocalMinus(product, sku);
+  }
+}
 actionServerMinus(product, sku) {
   const cart: any = {
   productId: product,
@@ -95,13 +103,6 @@ actionServerMinus(product, sku) {
   });
 }
 
-actionMinus(product, sku) {
-  if (this.localImageUrlView) {
-    this.actionServerMinus(product, sku);
-  } else {
-    this.actionLocalMinus(product, sku);
-  }
-}
   actionLocalMinus(product, skuCode)   {
     const localSame = this.shopModel.find(s => s.items.skuCode === skuCode);
     localSame.items.qty--;

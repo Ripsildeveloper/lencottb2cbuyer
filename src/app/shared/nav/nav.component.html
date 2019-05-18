@@ -1,6 +1,8 @@
+
 <nav class="navbar navbar-expand-lg bgNav">
   <a class="navbar-brand" href="#">
-    <img src="./../../../assets/img/Logo.png" class="img-fluid" height="100" width="100">
+    <img [src]="logoImage" class="img-fluid"
+     height="100" width="100">
   </a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="navbar-collapse collapse justify-content-end">
@@ -11,45 +13,6 @@
              matBadgeColor="warn">shopping_cart</mat-icon>
           </div>
         </li>
-        <!-- <li class="dropdown">
-          <a class="nav-link" (click)="toggleNavbar()" data-toggle="dropdown">Account<span
-              class="fa fa-angle-down"></span></a>
-          <ul class="dropdown-menu" role="menu" [ngClass]="{show: navbarShow}">
-            <li class="nav-item">
-              <a class="nav-link" (click)="toggleNavbar()" routerLink="/account/profile">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" (click)="toggleNavbar()" routerLink="/account/listaddress">Address</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" (click)="toggleNavbar()" routerLink="/account/listcard">Card</a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link navText signButton" routerLink="/account/registration">Signup</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link navText loginButton" routerLink="/account/signin">login</a>
-        </li> -->
-  <!--       <li class="dropdown" *ngIf="this.sharedService.getLogin()">
-          <a class="nav-link navText" (click)="navBarShow()"
-            data-toggle="dropdown">{{this.sharedService.findName()}}<span class="fa fa-angle-down"></span></a>
-          <ul class="dropdown-menu megaMenu" role="menu" [ngClass]="{show: dropdownShow}">
-            <li class="nav-item">
-              <a class="nav-link navText" (click)="navBarShow()" routerLink="/account/profile">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link navText" (click)="navBarShow()" routerLink="/account/listaddress">Address</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link navText" (click)="navBarShow()" routerLink="/account/listcard">Card</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link navText" (click)="navBarShow()" routerLink="/account/order">My Orders</a>
-            </li>
-          </ul>
-        </li> -->
         <li class="nav-item" *ngIf="!this.sharedService.getLogin()">
           <a class="nav-link  navText signButton" routerLink="/account/signin">Login</a>
         </li>
