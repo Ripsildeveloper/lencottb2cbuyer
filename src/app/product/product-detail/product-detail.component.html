@@ -11,6 +11,9 @@
       <h4><span>&#x20B9;</span> {{productModel?.price}}</h4>
     </div>
     <div class="form-group">
+        <label [hidden]="!selectedSize" class="text-danger">
+            Please Select Size
+        </label>
       <div>
         <label class="mr15"><strong>SIZE:</strong>
         </label>
@@ -43,7 +46,7 @@
       </div>
     </div> -->
     <div class="form-group">
-      <button (click)="skuProductAddToCart(productModel._id)"
+      <button (click)="selectedItems(productModel._id, selectedItem)"
         class="addToCartButton">ADD TO
         CART</button>
     </div>

@@ -29,6 +29,7 @@ export class ProductDetailComponent implements OnInit {
   message;
   noPrductAdd = false;
   selectedItem: any;
+  selectedSize: boolean;
   /* updateQtyTrue = false;
   labelSuccess = 'labelSuccess';
   labelDanger = 'labelDanger';
@@ -100,11 +101,12 @@ export class ProductDetailComponent implements OnInit {
       this.relatedProducts.splice(index, 1);
     }
   }
-  selectedItems() {
+  selectedItems(productId, sku) {
     if (!this.selectedItem) {
-
+      this.selectedSize =  true;
     } else {
-
+      this.selectedSize =  false;
+      this.skuProductAddToCart(productId, sku);
     }
   }
   skuProductAddToCart(productId, sku) {
@@ -181,7 +183,8 @@ export class ProductDetailComponent implements OnInit {
     const totalItem: any = [];
     const cart = {
       productId: product,
-      skuCode: sku
+      skuCode: sku,
+      qty: 1
     };
     totalItem.push(cart);
     this.cartModel = new Cart();
