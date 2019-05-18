@@ -21,10 +21,10 @@
                 </span></h6>
             </div>
             <div class="col-md-2">
-              <h6 class="text-center"><small>Pack</small></h6>
+              <!-- <h6 class="text-center"><small>Pack</small></h6> -->
 
-              <h6 class="text-danger" *ngIf="shop.items.showCondtion"><small>Minimum Order is
-                  <strong>{{cart.moq}}</strong></small></h6>
+              <!-- <h6 class="text-danger" *ngIf="shop.items.showCondtion"><small>Minimum Order is
+                  <strong>{{cart.moq}}</strong></small></h6> -->
               <span class="input-group-btn">
                 <button type="button" class="btn btn-primary btn-sm  btn-number"
                   (click)="actionMinus(cart._id, shop.items.pack, cart.moq, shop)" [disabled]="shop.items.pack === 1">

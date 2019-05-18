@@ -18,7 +18,6 @@ export class ShoppingCartComponent implements OnInit {
   shopModel: any = [];
   cartModel: Cart;
   userId;
-  moqModel: MOQ;
   subTotal  = 0;
   action;
   localImageUrlView = true;
@@ -74,13 +73,13 @@ export class ShoppingCartComponent implements OnInit {
         console.log(error);
       });
     } else {
-      this.shopModel.forEach((val) => {
+   /*    this.shopModel.forEach((val) => {
         if (val.items.productId === product) {
           val.items.showCondtion = true;
         } else {
           val.items.showCondtion = false;
         }
-      });
+      }); */
     }
   }
   removeLocalCart(product) {
@@ -121,10 +120,6 @@ export class ShoppingCartComponent implements OnInit {
     this.router.navigate(['home/welcome']);
   }
   actionLocalMinus(item, moq, pack)   {
-   /*  item.pack--;
-    if (item.set === 0) {
-      this.removeLocalCart(item);
-    } */
     if (  moq < pack  ) {
       item.pack--;
       sessionStorage.setItem('cart', JSON.stringify(this.shopModel));

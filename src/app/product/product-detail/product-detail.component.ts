@@ -27,16 +27,13 @@ export class ProductDetailComponent implements OnInit {
   cartModel: Cart;
   shopModel: any = [];
   message;
-  count = 0;
   noPrductAdd = false;
-  packSum = 0;
-  packCount = 1;
-  updateQtyTrue = false;
+  selectedItem: any;
+  /* updateQtyTrue = false;
   labelSuccess = 'labelSuccess';
   labelDanger = 'labelDanger';
   displayClass = this.labelSuccess;
-  stockItemStatus = 'Available';
-  cartPack: number;
+  stockItemStatus = 'Available'; */
   constructor(public productService: ProductService, private route: ActivatedRoute,
               private router: Router, private snackBar: MatSnackBar) {
 
@@ -46,10 +43,15 @@ export class ProductDetailComponent implements OnInit {
     this.id = this.route.snapshot.params.id;
     this.viewSingleProduct();
   }
+
+  sizeSelect(data) {
+    this.selectedItem = data;
+
+  }
   viewSingleProduct() {
     this.productService.getSingleProducts(this.id).subscribe(data => {
       this.productModel = data;
-      this.productModel.size.map(element => {
+    /*   this.productModel.size.map(element => {
         this.packSum += +element.ratio * this.productModel.moq;
         if (element.sizeQty <= 0 ) {
           element.qtyCheck = true;
@@ -57,7 +59,7 @@ export class ProductDetailComponent implements OnInit {
           this.displayClass = this.labelDanger;
           this.stockItemStatus = 'Not Available';
         }
-      });
+      }); */
       /* this.productModel.size.forEach(element => {
         element.setCount = 0;
       }); */
@@ -99,9 +101,9 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
-  skuProduct(productId) {
+  skuProductAddToCart(productId, sku) {
     const userId = sessionStorage.getItem('userId');
-    this.addToCartServer(userId, productId);
+    this.addToCartServer(userId, productId, sku);
     /* const userId = sessionStorage.getItem('userId');
     if (JSON.parse(sessionStorage.getItem('login'))) {
       if ( moq <= count ) {
@@ -169,10 +171,11 @@ export class ProductDetailComponent implements OnInit {
       });
     }
   }
-  addToCartServer(userId, product) {
+  addToCartServer(userId, product, sku) {
     const totalItem: any = [];
     const cart = {
       productId: product,
+      skuCode: sku
     };
     totalItem.push(cart);
     this.cartModel = new Cart();
@@ -180,7 +183,7 @@ export class ProductDetailComponent implements OnInit {
     this.cartModel.items = totalItem;
     this.productService.addToCart(this.cartModel).subscribe(data => {
     this.shopModel = data;
-    sessionStorage.setItem('pack', this.shopModel.length);
+    sessionStorage.setItem('cartqty', this.shopModel.length);
     this.message = 'Product Added To Cart';
     this.snackBar.open(this.message, this.action, {
       duration: 3000,
@@ -190,30 +193,10 @@ export class ProductDetailComponent implements OnInit {
     });
   }
   actionPlus(plus) {
-    this.packCount = ++plus;
-    /* this.productModel.size.map(element => {
-      const sizeQtySum = +element.ratio * this.productModel.moq * this.packCount;
-      const sizeQtyCheck =  (element.sizeQty) - (+element.ratio * this.productModel.moq  * (this.packCount + 1) );
-      element.updateQty = element.sizeQty - sizeQtySum;
-      if (sizeQtyCheck  < 0 )       {
-          element.updateValue = true;
-          this.updateQtyTrue = element.updateValue;
-      }
-    }); */
+
   }
   actionMinus(minus) {
-    this.packCount = --minus;
-    this.productModel.size.map(element => {
-      const sizeQtySum = +element.ratio * this.productModel.moq * (this.packCount - 1 );
-      element.updateQty = element.sizeQty + sizeQtySum;
-      if (element.updateQty  > 0 )       {
-          element.updateValue = false;
-          this.updateQtyTrue = element.updateValue;
-      } else {
-        element.updateValue = true;
-        this.updateQtyTrue = element.updateValue;
-      }
-    });
+
   }
   /* total() {
     let sum = 0;

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  serviceUrl: 'http://lencott.com/service/'
+  serviceUrl: 'http://lencott.com/buyerservice/'
 };

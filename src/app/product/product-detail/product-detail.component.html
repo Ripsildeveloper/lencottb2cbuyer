@@ -7,31 +7,20 @@
   <div class="col-sm-6  productDiscription">
     <h3>{{productModel?.productName}}</h3>
     <span>{{productModel?.productDescription}}</span>
-    <div class="rating col-sm-10">
-      <span class="labelStock" [ngClass]="displayClass">{{stockItemStatus}}</span>
-    </div>
     <div class="productPrice">
       <h4><span>&#x20B9;</span> {{productModel?.price}}</h4>
-      <h6 class="text-dark">{{productModel?.color}}</h6>
-    </div>
-    <div class="form-group">
-      <h6 >minimum order: {{productModel?.moq}}</h6>
-      <h6>1 pack = {{packSum}} piece</h6>
     </div>
     <div class="form-group">
       <div>
         <label class="mr15"><strong>SIZE:</strong>
         </label>
-        <ul class="nav sizeNav mt10" role="tablist">
-          <li role="presentation" *ngFor="let data of productModel?.size">
-            <div class="sizeText"><a>{{data.sizeName}}</a></div>
+        <ul class="nav sizeNav mt10">
+          <li role="presentation" *ngFor="let data of productModel?.size" 
+         
+          (click)="sizeSelect(data)">
+            <div class="sizeText"  [ngClass]="{ 'itemSelected': data === selectedItem }"><a>{{data.sizeName}}</a></div>
           </li>
         </ul>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="alert alert-danger" role="alert" *ngIf="noPrductAdd">
-        Please add minimum Qty <strong>{{productModel?.moq}}</strong>
       </div>
     </div>
 
@@ -54,7 +43,7 @@
       </div>
     </div> -->
     <div class="form-group">
-      <button (click)="skuProduct(productModel._id)"
+      <button (click)="skuProductAddToCart(productModel._id)"
         class="addToCartButton">ADD TO
         CART</button>
     </div>

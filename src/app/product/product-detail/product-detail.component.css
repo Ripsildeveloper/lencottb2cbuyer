@@ -118,16 +118,24 @@
   font-weight: 700;
   margin-top: 0;
 }
+.itemSelected {
+  border: 1px solid #dc3545;
+  width: 10px;
+  background-color: #dc3545;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  margin-right: 10px;
+  padding: 5px 15px;
+  margin-bottom: 5px;
+  float: left;
+  color: #ffff;
+}
 .sizeNav {
   list-style-type: none;
   position: relative;
-}
-.ratioNav
-{
-    position: relative;
-}
-.ratioNav > li {
-  float: left;
+  cursor: pointer;
 }
 .productPrice{
   position: relative;
@@ -141,11 +149,6 @@
   transition: padding 3s;
   -moz-transition: padding 3s;
   -webkit-transition: padding 3s;
-}
-
-.images:hover {
-  border: 1px solid blue;
-  /* border-radius: 25px; */
 }
 
 .addTocartButton
@@ -163,112 +166,4 @@ cursor: pointer;
 border: none;
 padding: 8px 10px;
 min-height: 45px;
-}
-
-.spMinus{
-  float: left;
-text-align: center;
-font-size: 23px;
-height: 36px;
-width: 36px;
-}
-.spPlus{
-  display: block;
-    width: 100%;
-    height: 100%;
-    color: #303238;
-}
-.detailsView {
-  margin-top: 20px;
-  border-left: 0.3px solid #8787;
-}
-
-
-
-.relatedSection {
-  color: rgb(104, 104, 104);
-}
-
-.showImages {
-  padding-top: 20px;
-  width: 100%;
-  padding-left: 15px;
-}
-
-.img-fluids {
-  height: 450px;
-  width: 390px;
-}
-
-.img-fluidss {
-  height: 450px;
-  width: 390px;
-
-}
-
-.img-fluidsss {
-  height: 60px;
-  width: 62px;
- 
-}
-
-.ras-btn {
-  width: 100px;
-  height: 100px;
-}
-
-.img-fluid {
-  height: 250px;
-  width: 200px;
-
-}
-
-.vat-btn {
-
-  width: 200px;
-  height: 250px;
- 
-
-}
-
-.variants {
-  width: 350px;
-  border: 2px;
-  border-radius: 100px;
-
-
-}
-.zoom {
-  transition: transform .2s;
-  margin: 0 auto;
-}
-
-.zoom:hover {
-  -ms-transform: scale(0.8);
-  -webkit-transform: scale(0.8); 
-  transform: scale(0.8); 
-}
-
-.zoom1 {
-  transition: transform .6s;
-  margin: 0 auto;
-}
-
-.zoom1:hover {
-  -ms-transform: scale(0.8);
-  -webkit-transform: scale(0.8); 
-  transform: scale(0.8); 
-}
-.var-btnn{
-  padding: 30px;
-}
-.zoom2 {
-  transition: transform .6s;
-  margin: 0 auto;
-}
-
-.zoom2:hover {
-  -ms-transform: scale(1.8);
-  -webkit-transform: scale(1.5); 
-  transform: scale(1.1); 
 }
