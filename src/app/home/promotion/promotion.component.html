@@ -1,15 +1,11 @@
-<!-- <div class="p-2 subHeader"><strong >{{promotionsModel.promotionTitle}}</strong><span></span></div> -->
+<div class="p-2 subHeader"><strong >{{promotionsModel?.promotionTitle}}</strong><span></span></div>
 <div class="row parent">
-  <div class="col-md-3 col-lg-3 col-xl-3 col-md-3 col-3"
-   *ngFor="let data of promotionsModel" 
-  style = "transform: translateX(0px);"
-  >
-    <img [src]="data.productImageName[0]" class="imgResponsive">
-    <p>{{data.productName}}</p>
-    <p><span>&#x20B9;</span>{{data.price}}</p>
-  </div>
+  <app-carousel-item>
+   <div appCarouselItem class="col-md-3 col-lg-3 col-xl-3 col-6" 
+    *ngFor="let data of promotionsModel?.joinedtable">
+      <img [src]="data.productImageName[0]" class="img-fluid">
+      <p>{{data.productName}}</p>
+      <p><span>&#x20B9;</span>{{data.price}}</p>
+    </div>
+  </app-carousel-item>
 </div>
-<button class="child" [disabled]="slideMultiStart === 1"
-  (click)="minusMultiCarousel(slideMultiStart, slideMultiEnd, sliderLength)">&#10094;</button>
-<button class="child" [disabled]="sliderLength === slideMultiLength"
-  (click)="plusMultiCarousel(slideMultiStart, slideMultiEnd, sliderLength)">&#10095;</button>

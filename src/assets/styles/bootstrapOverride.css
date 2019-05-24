@@ -27,6 +27,7 @@
   font-weight: 500;
   padding-right: 10px;
   text-overflow: ellipsis;
+  text-transform: uppercase;
 }
 .subHeader {
   position: relative;

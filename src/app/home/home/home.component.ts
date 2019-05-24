@@ -10,7 +10,7 @@ import { HotProduct } from './../hot-product/hot-product.model';
 })
 export class HomeComponent implements OnInit {
   banner: Banner[];
-  promotion: Promotion[];
+  promotion: Promotion;
   promotionTable: Promotion[];
   hotProduct: HotProduct;
   slideIndex = 0;
@@ -30,22 +30,6 @@ export class HomeComponent implements OnInit {
     this.allPromotion();
   }
 
-
-  plusMultiCarousel(slide)   {
-    this.slideMultiStart = this.slideMultiStart + 1;
-    /* this.slideMultiEnd = slide.slideMultiEnd; */
-    this.slideMultiLength = slide.slideMultiEnd;
-    const part = this.promotion.slice(slide.slideMultiStart, slide.slideMultiEnd);
-    this.promotionTable = part;
-  }
-  minusMultiCarousel(slide)   {
-    this.slideMultiStart = slide.slideMultiStart + 1;
-    /* this.slideMultiEnd = slide.slideMultiEnd; */
-    this.slideMultiLength = slide.slideMultiEnd;
-    const part = this.promotion.slice(slide.slideMultiStart, slide.slideMultiEnd);
-    this.promotionTable = part;
-  }
-
   allBanner() {
     this.homeService.getAllBanner().subscribe(data => {
       this.banner = data;
@@ -53,28 +37,11 @@ export class HomeComponent implements OnInit {
       console.log(error);
     });
   }
-  minusSlides(n) {
-    const min = --n;
-    if (min < 0) {
-      this.slideIndex = this.banner.length - 1;
-    } else {
-      this.slideIndex = min;
-    }
-  }
-  plusSlides(n) {
-    if (this.banner.length - 1 < n || this.banner.length - 1 <= n) {
-      this.slideIndex = 0;
-    } else {
-      this.slideIndex = ++n;
-    }
-  }
   allPromotion() {
     this.homeService.getAllPromotion().subscribe(data => {
-      this.promotion = data;
-      console.log(this.promotion);
-      this.promotion  = this.promotion[0].joinedtable;
-      this.sliderLength = this.promotion.length;
-      this.plusMultiCarousel(this.slide);
+      if (data.length > 0) {
+      this.promotion  = data[0];
+    }
     }, error => {
       console.log(error);
     });

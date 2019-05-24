@@ -1,51 +1,110 @@
 <div class="row galleryRow mt-2">
-  <div class="col-md-6 cardImage">
-    <img [src]="productModel?.productImageName[0]" class="responsive">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-12 col-12"
+      >
+       <img [src]="productModel?.productImageName[0]" height="600" 
+       width="500">
+      </div>
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-3 col-3"  *ngFor="let prod of productModel?.productImageName" 
+          >
+              <img [src]="prod" style="width: 50%; height: auto;">
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="col-md-6  productDiscription">
     <h3>{{productModel?.productName}}</h3>
-    <span>{{productModel?.productDescription}}</span>
     <div class="productPrice mt-3">
       <h4><span>&#x20B9;</span> {{productModel?.price}}</h4>
     </div>
     <div class="form-group mt-3">
-        <label [hidden]="!selectedSize" class="text-danger">
-            Please Select Size
-        </label>
+      <label [hidden]="!selectedSize" class="text-danger">
+        Please Select Size
+      </label>
       <div>
         <label class="mt-3"><strong>SIZE: {{selectedItem?.selectSize}}</strong>
         </label>
         <ul class="nav sizeNav">
-          <li role="presentation" *ngFor="let data of productModel?.size" 
-         
-          (click)="sizeSelect(data)">
-            <div class="sizeText"  [ngClass]="{ 'itemSelected': data === selectedItem }"><a>{{data.sizeName}}</a></div>
+          <li role="presentation" *ngFor="let data of productModel?.size" (click)="sizeSelect(data)">
+            <div class="sizeText" [ngClass]="{ 'itemSelected': data === selectedItem }"><a>{{data.sizeName}}</a></div>
           </li>
         </ul>
       </div>
     </div>
-
-    <!-- <div class="form-group">
+    <div class="form-group">
       <div class="inputCartButton">
         <span class="input-group-btn">
-          <button type="button" class="quantity-left-minus btn btn-primary btn-number" [disabled]="packCount === 1"
-            (click)="actionMinus(packCount)" data-type="minus" data-field="">
+          <button type="button" class="quantity-left-minus btn btn-primary btn-number" [disabled]="count === 1"
+            (click)="actionMinus(count)" data-type="minus" data-field="">
             <span>-</span>
           </button>
         </span>
         <input type="text" id="quantity" name="quantity" class="form-control 
-            text-center input-number" [value]="packCount" min="1" max="100" disabled>
+                text-center input-number" [value]="count" min="1" max="100" disabled>
         <span class="input-group-btn">
-          <button type="button" class="quantity-right-plus btn btn-primary btn-number" [disabled]="updateQtyTrue"
-            (click)="actionPlus(packCount)" data-type="plus" data-field="">
+          <button type="button" class="quantity-right-plus btn btn-primary btn-number" (click)="actionPlus(count)"
+            data-type="plus" data-field="">
             <span>+</span>
           </button>
         </span>
       </div>
-    </div> -->
-    <div class="form-group">
-      <button (click)="selectedItems(productModel._id, selectedItem)"
-        class="addToCartButton">ADD TO
+      <button (click)="selectedItems(productModel._id, selectedItem)" class="addToCartButton">ADD TO
         CART</button>
     </div>
+    <!-- 
+    <div class="form-group">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active"  data-toggle="tab"
+                role="tab" aria-controls="description"
+               aria-selected="true">Description</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  data-toggle="tab"  role="tab"
+               aria-controls="points" aria-selected="false">Points</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  data-toggle="tab"  role="tab" 
+              aria-controls="details"
+               aria-selected="false">Details</a>
+            </li>
+          </ul>
+    
+          <div class="tab-content">
+            <div class="tab-pane fade" role="tabpanel"
+            
+            
+            aria-labelledby="description"><span>{{productModel?.productDescription}}</span></div>
+            <div class="tab-pane fade"
+            role="tabpanel" aria-labelledby="points"
+            [ngClass]="{ 'active': updateQtyTrue}"
+            >2</div>
+            <div class="tab-pane fade" role="tabpanel" aria-labelledby="details">3</div>
+          </div>
+    </div> -->
+
+    <ul class="nav nav-tabs">
+      <li class="nav-item" *ngFor="let tab of tabItems; let i = index" role="presentation">
+        <a class="nav-link" [class.active]="selectedItemTab === tab.item" data-toggle="tab"
+          (click)="selectedTab(tab.item)" role="tab" aria-controls="description" aria-selected="true">{{tab.item}}</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div *ngIf="selectedItemTab === 'Description'">{{productModel?.productDescription}}</div>
+    </div>
+    <div *ngIf="selectedItemTab === 'Points'">
+
+      {{productModel.bulletPoints}}</div>
+    <div *ngIf="selectedItemTab === 'Details'">
+
+      <p>Height: {{productModel.height}}</p>
+      <p>Weight: {{productModel.weight}}</p>
+      <p>Occassion: {{productModel.occassion}}</p>
+      <p>Color: {{productModel.color}}</p>
+    </div>
   </div>
+</div>

@@ -19,7 +19,6 @@ export class FooterComponent implements OnInit {
 allFooter() {
   this.sharedService.getFooterDetails().subscribe(data => {
     this.footerDetails = data;
-    console.log(data);
   }, error => {
     console.log(error);
   });

@@ -12,7 +12,7 @@
 .registerCard {
   margin: 3%;
   border-radius: 0;
-  box-shadow: 0 0 4px rgba(40,44,63,0.08);
+  box-shadow: 0 0 4px rgb(34, 98, 194);;
   border: 1px solid #eaeaec;
 }
 
@@ -110,7 +110,7 @@
     align-items: center;
     justify-content: center;
     max-width: 200px;
-    background-color: #11172b;
+    background-color: rgb(34, 98, 194);;
     color: #fff;
     font-weight: 700;
     font-size: 14px;

@@ -4,7 +4,7 @@
       <div class="col-xs-12 col-sm-6 col-md-6 " *ngFor="let data of footerDetails">
 
           <a class="navbar-brand" href="#">
-              <img src="./../../../assets/img/Logo.png" class="img-fluid" height="200" width="200">
+              <img  [src]="data.logoImageName" class="img-fluid" height="200" width="200">
             </a>
         <div class="footers-info mt-3">
           <ul class="list-unstyled">

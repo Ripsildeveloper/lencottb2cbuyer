@@ -84,12 +84,10 @@
             <a class="product">
               <img [src]="product.productImageName[0]">
             </a>
-            <div>
-              <p>{{ product.productName }}</p>
+            <p>{{ product.productName }}</p>
               <p><b><span>&#x20B9;</span> {{ product.price }}</b></p>
 
-              Size: <span *ngFor="let size of product?.size">{{size.sizeName}} </span>
-            </div>
+              <!-- Size: <span *ngFor="let size of product?.size">{{size.sizeName}} </span> -->
           </div>
         </div>
         <!-- <div class="row">

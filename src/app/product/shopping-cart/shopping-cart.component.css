@@ -1,0 +1,17 @@
+
+.continueShopping
+{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 200px;
+    background-color: rgb(34, 98, 194);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+    padding: 8px 10px;
+    min-height: 45px;
+}

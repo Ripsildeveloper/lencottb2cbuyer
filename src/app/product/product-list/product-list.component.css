@@ -40,7 +40,13 @@
 .product > div p {
     overflow: hidden;
     line-height: 1.32em;
-    font-weight: 400;
+    font-weight: 200;
+}
+.product > div p b {
+    font-size: 16px;
+    margin-top: 5px;
+    display: inline-block;
+    color: #000;
 }
 ul {
     list-style-type: none;

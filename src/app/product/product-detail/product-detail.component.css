@@ -6,6 +6,11 @@
   text-align: center;
   font-family: arial;
 }
+.imgResponsive {
+  width: 100%;
+  height: auto;
+}
+
 .sizeText {
   border: 1px solid #11172b;
   width: 10px;
@@ -19,6 +24,10 @@
   margin-bottom: 5px;
   float: left;
 }
+.sizeImage {
+  border: 1px solid #11172b;
+  float: left;
+}
 .form-control{
   margin-right: 5px;
   margin-left: 5px;
@@ -30,12 +39,12 @@
     max-width: 200px;
     background-color: #ffff;
     color: #fff;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 14px;
     width: 100%;
     cursor: pointer;
     border: none;
-    /* padding: 8px 10px; */
+    padding-right: 10px;
     min-height: 45px;
 
 }
@@ -64,3 +73,28 @@
   position: relative;
   cursor: pointer;
 }
+.inlineImge {
+    overflow: visible;
+    display: inline-block;
+    left: 30px;
+    right: 30px;
+}
+
+.addToCartButton
+{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 200px;
+    background-color: rgb(34, 98, 194);;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+    padding: 8px 10px;
+    min-height: 45px;
+    display: inline-block;
+}
+

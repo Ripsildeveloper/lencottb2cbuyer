@@ -168,8 +168,8 @@ export class PlaceOrderComponent implements OnInit {
   deleteCart(userId) {
     this.accountService.deleteAllCart(userId).subscribe(data => {
       this.shopModel = data;
-      this.router.navigate(['/account/order']);
       sessionStorage.setItem('cartqty', JSON.stringify(this.shopModel.length));
+      this.router.navigate(['/account/order']);
     }, error => {
       console.log(error);
     });

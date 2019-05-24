@@ -1,0 +1,11 @@
+<div class="slider-container">
+  <div class="slides" #slides>
+    <ng-content select="[appCarouselItem]" #sliderItem></ng-content>
+  </div>
+  <div class="controls">
+   <!--  <a class="prev" (click)="onClickLeft()">&#10094;</a>
+    <a class="next" (click)="onClickRight()">&#10095;</a> -->
+    <button class="btn prev" [disabled]="slidesIndex === 0" (click)="onClickLeft()">&#10094;</button>
+    <button class="btn next" [disabled]="slidesIndex * mobileSlider >= items.length - 1" (click)="onClickRight()">&#10095;</button>
+  </div>
+</div>

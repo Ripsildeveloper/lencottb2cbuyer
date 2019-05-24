@@ -12,11 +12,14 @@ import { SubscribeComponent } from './subscribe/subscribe.component';
 import {HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
 import { HotProductComponent } from './hot-product/hot-product.component';
+import { CarouselItemComponent } from './carousel-item/carousel-item.component';
+import { CarouselItemDirective } from './carousel-item/carousel-item.directive';
 
 @NgModule({
 declarations: [BannerComponent, CategoryContentComponent, FooterComponent,
    ProductComponent, PromotionComponent, Promotion2Component, ReviewComponent,
-    StripComponent, SubscribeComponent, HomeComponent, HotProductComponent],
+    StripComponent, SubscribeComponent, HomeComponent, HotProductComponent,
+     CarouselItemComponent, CarouselItemDirective ],
   imports: [
     CommonModule,
     HomeRoutingModule

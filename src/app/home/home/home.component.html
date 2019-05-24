@@ -159,62 +159,9 @@
                    </div>
        </div>
        <br>
-       <h3 class="fourText">NEW ARRIVALS</h3>
-       <br>
-       <div class="fourImg">
-               <div class="row">
-                       <div class="col-md-3" *ngFor="let data of promotion" >
-                            <img [src]="data.productImageName[0]" class="finalImg">
-                            <h4 style="text-align: center;">
-                                    <p>{{data.productName}}</p>
-                                    <p><span>&#x20B9;</span>{{data.price}}</p>
-                                <a href="#">
-                                    <span class="buttons" style="text-align: center; padding-left: 15px;">QUICK SHOP</span>
-                                </a>
-                            </h4>
-                           
-                           
-                           <!-- <img src="../../../assets/img/Lee/Four Img/2100273-HERO.jpg" class="finalImg">
-                               
-                           <h4 class="hFour">OH SO MOTO</h4>
-                           <h4 style="text-align: center;">
-                               <a href="#">
-                                   <span class="buttons" style="text-align: center; padding-left: 15px;">QUICK SHOP</span>
-                               </a>
-                           </h4> -->
-                       </div>
-                      <!--  <div class="col-md-3">
-                                           
-                               <img src="../../../assets/img/Lee/Four Img/2102044-HERO.jpg" class="finalImg">
-                           
-                                   
-                           <h4 class="hFour">RAISE THE BAR</h4>
-                           <h4 style="text-align: center;">
-                               <a href="#">
-                                   <span class="buttons" style="text-align: center; padding-left: 15px;">QUICK SHOP</span>
-                               </a>
-                           </h4>
-                       </div> -->
-                      <!--  <div class="col-md-3">
-                               <img src="../../../assets/img/Lee/Four Img/6MW0237-HERO.jpg" class="finalImg">
-                           <h4 class="hFour">STREET STYLE</h4>
-                           <h4 style="text-align: center;">
-                               <a href="#">
-                                   <span class="buttons" style="text-align: center; padding-left: 15px;">QUICK SHOP</span>
-                               </a>
-                           </h4>
-                       </div> -->
-                                          <!--  <div class="col-md-3">
-                               <img src="../../../assets/img/Lee/Four Img/6MW0236-HERO.jpg" class="finalImg">
-                           <h4 class="hFour">STREET STYLE</h4>
-                           <h4 style="text-align: center;">
-                               <a href="#">
-                                   <span class="buttons" style="text-align: center; padding-left: 15px;">QUICK SHOP</span>
-                               </a>
-                           </h4>
-                       </div> -->
-                   </div>
-       </div>
-    <br>
+       
+       
+       
+                <app-promotion [hidden]="!promotion" [promotionsModel]="promotion"></app-promotion>
     
     </div>

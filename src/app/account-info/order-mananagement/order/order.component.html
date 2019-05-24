@@ -24,7 +24,7 @@
       </div>
       <div class="col-md-6 col-6">
         <h6 class="product-name"><strong>{{cart.productName}}</strong></h6>
-        <h6><small>{{cart.productDescription}}</small></h6>
+        <!-- <h6><small>{{cart.productDescription}}</small></h6> -->
         <h6> Size:<span *ngFor="let name of cart?.size">
             <b [hidden]="cartitem.skuCode!== name.skuCode"> {{ name.sizeName }}</b>
           </span></h6>

@@ -42,9 +42,9 @@ export class HomeService {
     return this.httpClient.get<HotProduct>(url);
   }
 
-  getAllPromotion(): Observable<any> {
+  getAllPromotion(): Observable<Promotion[]> {
     const categoryUrl = 'promotions';
     const url: string = this.serviceUrl + categoryUrl;
-    return this.httpClient.get<Promotion>(url);
+    return this.httpClient.get<Promotion[]>(url);
   }
 }

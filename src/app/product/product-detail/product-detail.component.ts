@@ -32,11 +32,15 @@ export class ProductDetailComponent implements OnInit {
   noPrductAdd = false;
   selectedItem: Size;
   selectedSize: boolean;
-  /* updateQtyTrue = false;
-  labelSuccess = 'labelSuccess';
+  activeTab = 'search';
+  count = 1;
+  updateQtyTrue = true;
+  /* labelSuccess = 'labelSuccess';
   labelDanger = 'labelDanger';
   displayClass = this.labelSuccess;
   stockItemStatus = 'Available'; */
+  tabItems = [{item: 'Description'}, {item: 'Points'}, {item: 'Details'}];
+  selectedItemTab = this.tabItems[0].item;
   constructor(public productService: ProductService, private route: ActivatedRoute,
               private router: Router, private snackBar: MatSnackBar) {
 
@@ -52,6 +56,9 @@ export class ProductDetailComponent implements OnInit {
     this.selectedItem.selectSize = itemselect.sizeName;
   }
 
+  selectedTab(tab) {
+    this.selectedItemTab = tab;
+  }
   viewSingleProduct() {
     this.productService.getSingleProducts(this.id).subscribe(data => {
       this.productModel = data;
@@ -129,7 +136,7 @@ export class ProductDetailComponent implements OnInit {
       const item = {
         productId: product,
         skuCode: skuItem.skuCode,
-        qty: 1
+        qty: this.count
       };
       const cart = {
         items: item,
@@ -148,7 +155,7 @@ export class ProductDetailComponent implements OnInit {
       const item = {
         productId: product,
         skuCode: skuItem.skuCode,
-        qty: 1
+        qty: this.count
       };
       const cart = {
         items: item,
@@ -175,7 +182,7 @@ export class ProductDetailComponent implements OnInit {
     const cart = {
       productId: product,
       skuCode: skuItem.skuCode,
-      qty: 1
+      qty: this.count
     };
     totalItem.push(cart);
     this.cartModel = new Cart();
@@ -193,29 +200,17 @@ export class ProductDetailComponent implements OnInit {
     });
   }
   actionPlus(plus) {
-
+    this.count = ++plus;
   }
   actionMinus(minus) {
+    this.count = --minus;
+  }
 
+  search(activeTab) {
+    this.activeTab = activeTab;
   }
-  /* total() {
-    let sum = 0;
-    if (JSON.parse(sessionStorage.getItem('login'))) {
-      this.totalQty();
-    } else {
-      const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
-      cart.map(item => {
-        sum += item.set * item.moq * item.price;
-      });
-      return sum;
-    }
+
+  result(activeTab) {
+    this.activeTab = activeTab;
   }
-  totalQty() {
-    let set = 0;
-    const totalSet = this.shopModel.map(item => item.skuDetail);
-    totalSet.map(item => {
-      set += item.set;
-    });
-    sessionStorage.setItem('set', JSON.stringify(set));
-  } */
 }
