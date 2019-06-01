@@ -1,3 +1,11 @@
 .mat-form-field {
     display: block !important;
   }
+
+  
+.displayBlock{
+  display: block;
+}
+.displayNone{
+  display: none;
+}

@@ -37,16 +37,21 @@ import {
 } from '@angular/material';
 import { ViewSingleProductComponent } from './view-single-product/view-single-product.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import { ProductDetailViewComponent } from './product-detail-view/product-detail-view.component';
 import { ProductDetailComponent} from './product-detail/product-detail.component';
 import { ProductFilterComponent } from './product-filter/product-filter.component';
 import { ShoppingCartComponent} from './shopping-cart/shopping-cart.component';
 import { PriceSummaryComponent } from './price-summary/price-summary.component';
+import { ZoommodelComponent } from './zoommodel/zoommodel.component';
+import { CarouselItemComponent } from './carousel-item/carousel-item.component';
+import { CarouselItemDirective } from './carousel-item/carousel-item.directive';
 
 @NgModule({
   declarations: [ViewProductsComponent, ViewSingleProductComponent,
-    ProductListComponent, ProductDetailViewComponent,
-     ProductDetailComponent, ShoppingCartComponent, PriceSummaryComponent, ProductFilterComponent],
+    ProductListComponent,
+     ProductDetailComponent, ShoppingCartComponent,
+      PriceSummaryComponent, ProductFilterComponent,
+      CarouselItemComponent, CarouselItemDirective,
+      ZoommodelComponent],
   imports: [
     CommonModule,
     ProductRoutingModule,

@@ -1,0 +1,13 @@
+<div class="slider-container">
+  <div class="slides" #slides>
+    <ng-content select="[appCarouselItem]" #sliderItem></ng-content>
+  </div>
+  
+  <div class="controls">
+    <a class="prev" [hidden]="slidesIndex === 0"
+     (click)="onClickLeft()">&#10094;</a>
+    <a class="next"
+     [hidden]="slidesIndex >= items.length - 1"
+      (click)="onClickRight()">&#10095;</a>
+  </div>
+</div>

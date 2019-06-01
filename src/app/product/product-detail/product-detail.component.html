@@ -2,6 +2,7 @@
   <div class="col-md-6">
     <div class="row">
       <div class="col-md-12 col-12"
+      (click)="clickZoom(productModel?.productImageName)" 
       >
        <img [src]="productModel?.productImageName[0]" height="600" 
        width="500">
@@ -9,6 +10,7 @@
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-3 col-3"  *ngFor="let prod of productModel?.productImageName" 
+          
           >
               <img [src]="prod" style="width: 50%; height: auto;">
           </div>
@@ -16,7 +18,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-6  productDiscription">
+  <div class="col-md-6 productDiscription">
     <h3>{{productModel?.productName}}</h3>
     <div class="productPrice mt-3">
       <h4><span>&#x20B9;</span> {{productModel?.price}}</h4>
@@ -108,3 +110,5 @@
     </div>
   </div>
 </div>
+{{zoomModel | json}}
+<app-zoommodel [zoom]="zoomModel" (closeZoom)="zoomClosed($event)"></app-zoommodel>

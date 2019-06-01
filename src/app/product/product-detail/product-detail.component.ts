@@ -4,10 +4,11 @@ import { MatPaginatorIntl } from '@angular/material';
 import { ParamMap, ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ProductService } from './../product.service';
 import { Product } from '../../shared/model/product.model';
+import { Zoom } from '../zoommodel/zoom.model';
 import { Size } from '../../shared/model/size.model';
 import { Cart } from '../../shared/model/cart.model';
 import { MatSnackBar } from '@angular/material';
-import { single } from 'rxjs/operators';
+
 
 
 @Component({
@@ -20,6 +21,8 @@ export class ProductDetailComponent implements OnInit {
   id;
   showRelatedProducts;
   action;
+  zoom: Zoom;
+  zoomModel: Zoom;
   productId;
   relatedProducts = [];
   primeHide: boolean;
@@ -49,8 +52,23 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
     this.viewSingleProduct();
+    this.zoom = new Zoom();
+    this.zoom.displayClass = 'displayNone';
+    this.zoomModel = this.zoom;
   }
-
+  zoomClosed(emit) {
+    this.zoom = new Zoom();
+    this.zoom.displayClass = 'displayNone';
+    this.zoom.clickIndex = emit;
+    this.zoomModel = this.zoom;
+  }
+  clickZoom(image)   {
+    this.zoom = new Zoom();
+    this.zoom.displayClass = 'displayBlock';
+    this.zoom.imageUrl = image;
+    this.zoom.clickIndex = true;
+    this.zoomModel = this.zoom;
+  }
   sizeSelect(itemselect: Size) {
     this.selectedItem = itemselect;
     this.selectedItem.selectSize = itemselect.sizeName;

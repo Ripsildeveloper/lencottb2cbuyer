@@ -1,0 +1,17 @@
+<div [ngClass]="zoom?.displayClass" class="zoomPop"></div>
+<div [ngClass]="zoom?.displayClass" class="zoomPop" tabindex="-1" style="overflow: hidden auto;">
+  <div class="row m-4">
+    <button (click)="closed()" type="button" class="zoomClose">×</button>
+  </div>
+
+  <app-carousel-item>
+    <div appCarouselItem class="zoomScaler col-md-12 col-12"
+     *ngFor="let image of zoom?.imageUrl">
+      <img class="image-fluid" [src]="image">
+    </div>
+    <!-- <div appCarouselItem class="zoomScaler col-md-12 col-12">
+      <img src="./../../assets/images/Hydrangeas.jpg">
+    </div> -->
+  </app-carousel-item>
+
+</div>
